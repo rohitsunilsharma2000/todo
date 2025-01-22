@@ -91,7 +91,7 @@ const SpecialistScreen = ({ navigation }) => {
                 <Text style={styles.reviews}>({doctor.reviews})</Text>
               </View>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity >
         ))}
       </ScrollView>
     </View>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F6F6F6',
     paddingTop: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   header: {
     marginBottom: 20,
@@ -123,13 +123,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   doctorList: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
   },
   doctorItem: {
     flexDirection: 'row',
     marginBottom: 20,
     backgroundColor: '#fff',
-    padding: 15,
+    padding: 10,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOpacity: 0.1,
@@ -139,10 +139,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   doctorImage: {
-    width: 80,
+    width: 110,
     height: 80,
-    borderRadius: 40,
+    // borderRadius: 40,
     marginRight: 15,
+    padding:10,
+    
   },
   doctorInfo: {
     flex: 1,

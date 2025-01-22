@@ -1,112 +1,117 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView ,FlatList} from 'react-native';
+import PopularDepartmentAndMedicine from '../landing/PopularDepartmentAndMedicine';
+import SpecialistScreen from './SpecialistScreen';
 
-const HomeDetailsScreen = () => {
-  return (
-    <ScrollView style={styles.container}>
-    <View style={styles.header}>
-      <Text style={styles.greeting}>Hi Jhalok</Text>
-      <Text style={styles.subGreeting}>Good Morning!</Text>
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search Doctors"
-          placeholderTextColor="#8e8e8e"
-        />
-        <TouchableOpacity style={styles.filterButton}>
-          <Image source={{ uri: 'filter-icon-url' }} style={styles.icon} />
-        </TouchableOpacity>
-      </View>
-    </View>
+const HomeDetailsScreen = ({navigation}) => {
+  const productImages = [
+    {
+      id: '1',
+      uri: 'https://png.pngtree.com/png-clipart/20190604/original/pngtree-colored-pills-capsules-png-image_1428469.jpg',
+    },
+    {
+      id: '2',
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMWcVx2rloniX0sbaCsgFRmKk8UMc-8yzmKA&s',
+    },
+  ];
 
-    <View style={styles.promotionContainer}>
-      <View style={styles.leftContent}>
-        <Text style={styles.promotionText}>Looking Specialist Doctor?</Text>
-        <Text style={styles.promotionSubtitle}>
-          Upload a Prescription and Tell Us what you Need. We do the Rest!
-        </Text>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>BOOK NOW</Text>
-        </TouchableOpacity>
-      </View>
+  const renderProductImage = ({ item }) => (
+    <Image source={{ uri: item.uri }} style={styles.productImage} />
+  );
 
-      <View style={styles.rightContent}>
-        <Image
-          source={{
-            uri: 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png',
-          }}
-          style={styles.image}
-        />
-      </View>
-    </View>
+  const data = [
+    { key: 'header' },
+    { key: 'promotion' },
+    { key: 'offer' },
+    { key: 'popular' },
+    { key: 'doctor' },
 
-   
-    <View style={styles.offerContainer}>
-      {/* Left Content */}
-      <View style={styles.leftContent}>
-        <Text style={styles.offerText}>UPTO 80% OFFER*</Text>
-        <Text style={styles.offerSubtitle}>On Health Products</Text>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>SHOP NOW</Text>
-        </TouchableOpacity>
-        <Text style={styles.offerDescription}>
-          Homeopathy, Ayurvedic, Personal Care & More
-        </Text>
-      </View>
-
-      {/* Right Content (Image Slider) */}
-      <View style={styles.rightContent}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Image
-            source={{
-              uri: 'https://png.pngtree.com/png-clipart/20190604/original/pngtree-colored-pills-capsules-png-image_1428469.jpg',
-            }}
-            style={styles.productImage}
-          />
-          <Image
-            source={{
-              uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMWcVx2rloniX0sbaCsgFRmKk8UMc-8yzmKA&s',
-            }}
-            style={styles.productImage}
-          />
-        </ScrollView>
-      </View>
-    </View>
-    <View style={styles.popularContainer}>
-      <Text style={styles.popularText}>Popular Medicine</Text>
-      <TouchableOpacity style={styles.seeAllButton}>
-        <Text style={styles.seeAllText}>SEE ALL</Text>
-      </TouchableOpacity>
-      <ScrollView horizontal style={styles.productScroll}>
-        <View style={styles.productItem}>
-          <Image source={{ uri: 'https://static.vecteezy.com/system/resources/previews/022/923/884/non_2x/pastel-color-medicine-pills-pills-flying-up-out-of-tablet-capsule-3d-rendering-pharmacy-concept-drugs-awareness-free-png.png' }} style={styles.productImage} />
-          <Text style={styles.productName}>Nutritional Drinks</Text>
-        </View>
-        <View style={styles.productItem}>
-        <Image source={{ uri: 'https://static.vecteezy.com/system/resources/previews/022/923/884/non_2x/pastel-color-medicine-pills-pills-flying-up-out-of-tablet-capsule-3d-rendering-pharmacy-concept-drugs-awareness-free-png.png' }} style={styles.productImage} />
-        <Text style={styles.productName}>Ayurveda</Text>
-        </View>
-        <View style={styles.productItem}>
-        <Image source={{ uri: 'https://static.vecteezy.com/system/resources/previews/022/923/884/non_2x/pastel-color-medicine-pills-pills-flying-up-out-of-tablet-capsule-3d-rendering-pharmacy-concept-drugs-awareness-free-png.png' }} style={styles.productImage} />
-        <Text style={styles.productName}>Vitamins & Supplements</Text>
-        </View>
-        <View style={styles.productItem}>
-          <Image source={{ uri: 'https://static.vecteezy.com/system/resources/previews/022/923/884/non_2x/pastel-color-medicine-pills-pills-flying-up-out-of-tablet-capsule-3d-rendering-pharmacy-concept-drugs-awareness-free-png.png' }} style={styles.productImage} />
-          <Text style={styles.productName}>Nutritional Drinks</Text>
-        </View>
-        <View style={styles.productItem}>
-        <Image source={{ uri: 'https://static.vecteezy.com/system/resources/previews/022/923/884/non_2x/pastel-color-medicine-pills-pills-flying-up-out-of-tablet-capsule-3d-rendering-pharmacy-concept-drugs-awareness-free-png.png' }} style={styles.productImage} />
-        <Text style={styles.productName}>Ayurveda</Text>
-        </View>
-        <View style={styles.productItem}>
-        <Image source={{ uri: 'https://static.vecteezy.com/system/resources/previews/022/923/884/non_2x/pastel-color-medicine-pills-pills-flying-up-out-of-tablet-capsule-3d-rendering-pharmacy-concept-drugs-awareness-free-png.png' }} style={styles.productImage} />
-        <Text style={styles.productName}>Vitamins & Supplements</Text>
-        </View>
-      </ScrollView>
-    </View>
     
+  ];
 
-  </ScrollView>
+  const renderItem = ({ item }) => {
+    switch (item.key) {
+      case 'header':
+        return (
+          <View style={styles.header}>
+            <Text style={styles.greeting}>Hi Jhalok</Text>
+            <Text style={styles.subGreeting}>Good Morning!</Text>
+            <View style={styles.searchContainer}>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search Doctors"
+                placeholderTextColor="#8e8e8e"
+              />
+              <TouchableOpacity style={styles.filterButton}>
+                <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3678/3678587.png' }} style={styles.icon} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      case 'promotion':
+        return (
+          <View style={styles.promotionContainer}>
+            <View style={styles.leftContent}>
+              <Text style={styles.promotionText}>Looking Specialist Doctor?</Text>
+              <Text style={styles.promotionSubtitle}>
+                Upload a Prescription and Tell Us what you Need. We do the Rest!
+              </Text>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>BOOK NOW</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.rightContent}>
+              <Image
+                source={{
+                  uri: 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-young-afro-professional-doctor-png-image_10148632.png',
+                }}
+                style={styles.image}
+              />
+            </View>
+          </View>
+        );
+      case 'offer':
+        return (
+          <View style={styles.offerContainer}>
+            <View style={styles.leftContent}>
+              <Text style={styles.offerText}>UPTO 80% OFFER*</Text>
+              <Text style={styles.offerSubtitle}>On Health Products</Text>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>SHOP NOW</Text>
+              </TouchableOpacity>
+              <Text style={styles.offerDescription}>
+                Homeopathy, Ayurvedic, Personal Care & More
+              </Text>
+            </View>
+            <View style={styles.rightContent}>
+              <FlatList
+                data={productImages}
+                renderItem={renderProductImage}
+                keyExtractor={(item) => item.id}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>
+          </View>
+        );
+      case 'popular':
+        return <PopularDepartmentAndMedicine />;
+        case 'doctor':
+          return <  SpecialistScreen navigation={navigation}/>;
+
+      
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <FlatList
+      style={styles.container}
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.key}
+    />
   );
 };
 

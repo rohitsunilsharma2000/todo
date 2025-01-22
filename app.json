@@ -16,13 +16,33 @@
       "supportsTablet": true
     },
     "android": {
+      "builds": {
+    "android": {
+      "release": {
+        "workflow": "managed",
+        "buildType": "apk"
+      }
+    }
+  },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "keystore": {
+        "keystorePath": "/Users/meghnadsaha/.android/Users/meghnadsaha/.android/my-release-key.keystore",
+        "keystorePassword": "your_keystore_password",
+        "keyAlias": "your_key_alias",
+        "keyPassword": "your_key_password"
+      },
+      "package": "com.meghnadsaha422.todo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "086d4c77-a91d-497e-a7f2-aacd624253b2"
+      }
     }
   }
 }

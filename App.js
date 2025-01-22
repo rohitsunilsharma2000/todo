@@ -1,4 +1,6 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Importing icons
+
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,6 +12,8 @@ import DoctorProfileScreen from './screens/home-details-page/DoctorProfileScreen
 
 import ScheduleScreen from './screens/appointment-payment-details/ScheduleScreen';
 import PatientDetailsScreen from './screens/appointment-payment-details/PatientDetailsScreen';
+import PaymentMethodScreen from './screens/appointment-payment-details/PaymentMethodScreen';
+import AppointmentScreen from './screens/appointment-payment-details/AppointmentScreen';
 
 
 
@@ -44,43 +48,48 @@ const ProfileScreen = () => {
 function MyTabs() {
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          marginBottom: 30,
-          marginLeft: 10,
-          marginRight: 10,
-          borderRadius: 20,
-          backgroundColor: '#ffffff',
-          elevation: 10,
-          shadowColor: '#000000',
-          shadowOpacity: 0.2,
-          shadowRadius: 5,
-          shadowOffset: { width: 0, height: 2 },
-          zIndex: 999,
-          position:'absolute',
-        },
-        tabBarLabelStyle: {
-          fontSize: 14,
-        },
-        tabBarIconStyle: {
-          width: 25,
-          height: 25,
-        },
-        tabBarActiveBackgroundColor: '#4CAF50',
-        tabBarActiveTintColor: '#fff',
-        tabBarInactiveTintColor: 'gray',
-      }}
-    >
+    screenOptions={{
+      tabBarStyle: {
+        backgroundColor: '#ffffff',
+        elevation: 30,
+        shadowColor: '#000000',
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 10, height: 2 },
+        height: 70, // Increased height for tab bar
+        borderRadius: 20, // Rounded corners for the tab bar
+        paddingTop: 5,
+        borderTopWidth: 0, // Remove top border if any
+      },
+      tabBarLabelStyle: {
+        fontSize: 14,
+      },
+      tabBarIconStyle: {
+        width: 30, // Increased size for better visibility
+        height: 30, // Increased size for better visibility
+      },
+      // tabBarActiveBackgroundColor: '#4CAF50', // Active background color
+      tabBarActiveTintColor: '#fff', // Active icon color
+      tabBarInactiveTintColor: 'gray', // Inactive icon color
+      
+    }}
+  >
       <Tab.Screen
         name="Home"
         component={HomeDetailsScreen}
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color }) => (
+          tabBarLabel: '',
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                styles.iconContainer,
+                focused && styles.activeTab, // Apply rounded corners on active tab
+              ]}
+            >
             <Image
-              source={{ uri: 'home-icon-url' }}
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/1946/1946488.png' }}
               style={{ width: 25, height: 25, tintColor: color }}
             />
+            </View>
           ),
         }}
       />
@@ -88,39 +97,66 @@ function MyTabs() {
         name="Messages"
         component={SpecialistScreen}
         options={{
-          tabBarLabel: 'Messages',
-          tabBarIcon: ({ color }) => (
+          tabBarLabel: '',
+
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                styles.iconContainer,
+                focused && styles.activeTab, // Apply rounded corners on active tab
+              ]}
+            >
             <Image
-              source={{ uri: 'message-icon-url' }}
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/1370/1370907.png' }}
               style={{ width: 25, height: 25, tintColor: color }}
             />
+            </View>
           ),
         }}
+         
       />
       <Tab.Screen
         name="Documents"
         component={ScheduleScreen}
         options={{
-          tabBarLabel: 'Documents',
-          tabBarIcon: ({ color }) => (
+          tabBarLabel: '',
+       
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                styles.iconContainer,
+                focused && styles.activeTab, // Apply rounded corners on active tab
+              ]}
+            >
             <Image
-              source={{ uri: 'document-icon-url' }}
-              style={{ width: 25, height: 25, tintColor: color }}
+            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/12672/12672815.png' }}
+            style={{ width: 25, height: 25, tintColor: color }}
             />
+            </View>
           ),
+    
         }}
       />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color }) => (
+          tabBarLabel: '',
+       
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                styles.iconContainer,
+                focused && styles.activeTab, // Apply rounded corners on active tab
+              ]}
+            >
             <Image
-              source={{ uri: 'profile-icon-url' }}
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2785/2785482.png' }}
               style={{ width: 25, height: 25, tintColor: color }}
             />
+            </View>
           ),
+    
         }}
       />
     </Tab.Navigator>
@@ -134,6 +170,8 @@ export default function App() {
         <Stack.Screen name="Specialist" component={MyTabs} />
         <Stack.Screen name="DoctorProfile" component={DoctorProfileScreen} />
         <Stack.Screen name="PatientDetailsScreen" component={PatientDetailsScreen} />
+        <Stack.Screen name="PaymentMethodScreen" component={PaymentMethodScreen} />
+        <Stack.Screen name="AppointmentScreen" component={AppointmentScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -271,5 +309,27 @@ const styles = StyleSheet.create({
   },
   footerIcon: {
     alignItems: 'center',
+  }, iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 55,
+    height: 55,
+    borderRadius: 15, // default rounded corners for the icons
   },
+  activeTab: {
+    backgroundColor: '#4CAF50', // Background color for active tab
+    borderRadius: 15, // Apply rounded corners on the active tab background
+  },
+    continueButton: {
+      backgroundColor: '#4CAF50',
+      paddingVertical: 12,
+      borderRadius: 8,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    continueText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: '600',
+    },
 });

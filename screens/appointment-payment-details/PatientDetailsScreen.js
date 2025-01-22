@@ -1,22 +1,40 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // Updated import
+import DateTimePicker from '@react-native-community/datetimepicker'; // Importing DateTimePicker
 
 const PatientDetailsScreen = ({ navigation }) => {
   const [fullName, setFullName] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
-  const [selectedGender, setSelectedGender] = useState(''); // Empty string is a valid initial value
   const [problem, setProblem] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+
+   // Initialize the selectedGender and selectedDate state
+   const [selectedGender, setSelectedGender] = useState(null);
+   const [selectedDate, setSelectedDate] = useState(new Date());
+   const [showDatePicker, setShowDatePicker] = useState(false);
+
   const handleSubmit = () => {
-    if (!fullName || !age || !gender || !problem) {
+    if (!fullName || !selectedDate || !selectedGender || !problem) {
+      alert(fullName)
+      alert(selectedDate)
+      alert(gender)
+      alert(problem)
+
       setErrorMessage('Please fill in all the fields');
     } else {
       setErrorMessage('');
-      navigation.navigate('NextScreen'); // Replace 'NextScreen' with your next screen
+      navigation.navigate('PaymentMethodScreen'); // Replace 'NextScreen' with your next screen
     }
+  };
+
+
+  const handleDateChange = (event, date) => {
+    const selectedDate = date || selectedDate;  // If no date is selected, keep the previous value
+    setShowDatePicker(false);
+    setSelectedDate(selectedDate);
   };
 
   return (
@@ -33,14 +51,31 @@ const PatientDetailsScreen = ({ navigation }) => {
       />
 
       {/* Age */}
-      <Text style={styles.label}>Age</Text>
+      {/* <Text style={styles.label}>Age</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter Age"
         keyboardType="numeric"
         value={age}
         onChangeText={setAge}
-      />
+      /> */}
+
+<Text style={styles.label}>Date of Birth</Text>
+      <TouchableOpacity style={styles.dateButton} onPress={() => setShowDatePicker(true)}>
+        <Text style={styles.dateButtonText}>{selectedDate.toLocaleDateString()}</Text>
+      </TouchableOpacity>
+
+      {/* Date Picker Modal */}
+      {showDatePicker && (
+        <DateTimePicker
+          value={selectedDate}
+          mode="date"
+          display="default"
+          onChange={handleDateChange}
+        />
+      )}
+      
+
 
       {/* Gender */}
       <Text style={styles.label}>Gender</Text>
