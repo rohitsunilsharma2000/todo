@@ -10,26 +10,19 @@ const PatientDetailsScreen = ({ navigation }) => {
   const [problem, setProblem] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-
-   // Initialize the selectedGender and selectedDate state
-   const [selectedGender, setSelectedGender] = useState(null);
-   const [selectedDate, setSelectedDate] = useState(new Date());
-   const [showDatePicker, setShowDatePicker] = useState(false);
+  // Initialize the selectedGender and selectedDate state
+  const [selectedGender, setSelectedGender] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const handleSubmit = () => {
     if (!fullName || !selectedDate || !selectedGender || !problem) {
-      alert(fullName)
-      alert(selectedDate)
-      alert(gender)
-      alert(problem)
-
       setErrorMessage('Please fill in all the fields');
     } else {
       setErrorMessage('');
       navigation.navigate('PaymentMethodScreen'); // Replace 'NextScreen' with your next screen
     }
   };
-
 
   const handleDateChange = (event, date) => {
     const selectedDate = date || selectedDate;  // If no date is selected, keep the previous value
@@ -50,17 +43,8 @@ const PatientDetailsScreen = ({ navigation }) => {
         onChangeText={setFullName}
       />
 
-      {/* Age */}
-      {/* <Text style={styles.label}>Age</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter Age"
-        keyboardType="numeric"
-        value={age}
-        onChangeText={setAge}
-      /> */}
-
-<Text style={styles.label}>Date of Birth</Text>
+      {/* Date of Birth */}
+      <Text style={styles.label}>Date of Birth</Text>
       <TouchableOpacity style={styles.dateButton} onPress={() => setShowDatePicker(true)}>
         <Text style={styles.dateButtonText}>{selectedDate.toLocaleDateString()}</Text>
       </TouchableOpacity>
@@ -74,14 +58,13 @@ const PatientDetailsScreen = ({ navigation }) => {
           onChange={handleDateChange}
         />
       )}
-      
-
 
       {/* Gender */}
       <Text style={styles.label}>Gender</Text>
       <Picker
         selectedValue={selectedGender}
         onValueChange={(itemValue) => setSelectedGender(itemValue)}
+        style={styles.picker}
       >
         <Picker.Item label="Male" value="Male" />
         <Picker.Item label="Female" value="Female" />
@@ -114,40 +97,66 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#f8f8f8', // Light background color
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#4CAF50',
-    marginBottom: 20,
+    marginBottom: 30,
   },
   label: {
     fontSize: 16,
     marginVertical: 5,
+    color: '#333',
   },
   input: {
-    height: 40,
+    height: 45,
     borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
+    borderRadius: 10,
+    paddingLeft: 15,
     marginBottom: 20,
+    backgroundColor: '#fff',
   },
   textarea: {
     height: 100,
     borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
+    borderRadius: 10,
+    paddingLeft: 15,
     marginBottom: 20,
+    backgroundColor: '#fff',
+  },
+  dateButton: {
+    height: 45,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 10,
+    justifyContent: 'center',
+    paddingLeft: 15,
+    marginBottom: 20,
+    backgroundColor: '#fff',
+  },
+  dateButtonText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  picker: {
+    height: 45,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 20,
+    backgroundColor: '#fff',
   },
   button: {
     backgroundColor: '#4CAF50',
     paddingVertical: 12,
     paddingHorizontal: 30,
-    borderRadius: 8,
+    borderRadius: 10,
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonText: {
     color: '#fff',

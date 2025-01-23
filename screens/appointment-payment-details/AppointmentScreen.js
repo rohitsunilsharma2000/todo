@@ -71,7 +71,7 @@ const AppointmentScreen = () => {
       </View> */}
 
             <TouchableOpacity style={styles.continueButton} 
-            // onPress={handleContinue}
+            onPress={() => alert('Payment initiated')}
             >
               <Text style={styles.continueText}>Pay $29</Text>
             </TouchableOpacity>

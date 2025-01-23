@@ -15,6 +15,7 @@ import PatientDetailsScreen from './screens/appointment-payment-details/PatientD
 import PaymentMethodScreen from './screens/appointment-payment-details/PaymentMethodScreen';
 import AppointmentScreen from './screens/appointment-payment-details/AppointmentScreen';
 
+import DrugDetailScreen from './screens/medicine-pill-reminder/DrugDetailScreen';
 
 
 
@@ -49,6 +50,7 @@ function MyTabs() {
   return (
     <Tab.Navigator
     screenOptions={{
+      // headerShown: false, // Hides headers for Tab screens
       tabBarStyle: {
         backgroundColor: '#ffffff',
         elevation: 30,
@@ -166,12 +168,25 @@ function MyTabs() {
 export default function App() {
   return (
 <NavigationContainer>
-      <Stack.Navigator initialRouteName="Specialist">
-        <Stack.Screen name="Specialist" component={MyTabs} />
-        <Stack.Screen name="DoctorProfile" component={DoctorProfileScreen} />
-        <Stack.Screen name="PatientDetailsScreen" component={PatientDetailsScreen} />
-        <Stack.Screen name="PaymentMethodScreen" component={PaymentMethodScreen} />
-        <Stack.Screen name="AppointmentScreen" component={AppointmentScreen} />
+      <Stack.Navigator initialRouteName="Specialist" 
+      // screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Specialist" component={MyTabs}   options={{ headerShown: false }} />
+        <Stack.Screen name="DoctorProfile" component={DoctorProfileScreen}          
+        //  options={{ headerShown: false }} 
+          />
+        <Stack.Screen name="PatientDetailsScreen" component={PatientDetailsScreen}           
+        //  options={{ headerShown: false }}
+          />
+        <Stack.Screen name="PaymentMethodScreen" component={PaymentMethodScreen}       
+          //  options={{ headerShown: false }} 
+            />
+        <Stack.Screen name="AppointmentScreen" component={AppointmentScreen}          
+        //  options={{ headerShown: false }}
+          />
+        <Stack.Screen name="DrugDetailScreen" component={DrugDetailScreen}        
+          //  options={{ headerShown: false }}
+            />
 
       </Stack.Navigator>
     </NavigationContainer>

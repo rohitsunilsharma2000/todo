@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const PopularDepartmentAndMedicine = () => {
+const PopularDepartmentAndMedicine = ({navigation}) => {
   const popularMedicine = [
     { name: 'Nutritional Drinks', imageUrl: 'https://pngfile.net/download/5kUsX7RyCcuLiqafP9qGllTOY9zFhuM2Qpv013ARsJIy3TBZyIMWMDYJOjPHmgD6g8Z1wNRIxrUhyrolFnlyRTvjGrHMGe8Gt56AN479gbmE5uikU9wyAvrjFnXqvEc59vSA3L3ePLxRyqFZ11Hk1qpEnVAwneLwpB5Q8eIBf2JQ1cmVC8qWhgWZj3w4OCl3YpbpRqNw/large' },
     { name: 'Ayurveda', imageUrl: 'https://i.pinimg.com/736x/57/c6/eb/57c6eb3bbb608bff626f4913e5c83b31.jpg' },
@@ -17,7 +17,7 @@ const PopularDepartmentAndMedicine = () => {
 
 ];
 
-  const popularDepartment = [
+const popularDepartment = [
     { name: 'Doctors', icon: 'user-md' },
     { name: 'Video Call', icon: 'video-camera' },
     { name: 'Hospital', icon: 'hospital-o' },
@@ -37,7 +37,8 @@ const PopularDepartmentAndMedicine = () => {
       <FlatList
         data={popularMedicine}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.medicineCard}>
+          <TouchableOpacity style={styles.medicineCard} onPress={() => navigation.navigate('DrugDetailScreen')}
+>
            <Image source={{ uri: item.imageUrl }} style={styles.productImage} />
             <Text style={styles.medicineName}>{item.name}</Text>
           </TouchableOpacity>

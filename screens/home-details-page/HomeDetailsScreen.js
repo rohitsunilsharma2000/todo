@@ -19,6 +19,7 @@ const HomeDetailsScreen = ({navigation}) => {
     <Image source={{ uri: item.uri }} style={styles.productImage} />
   );
 
+
   const data = [
     { key: 'header' },
     { key: 'promotion' },
@@ -29,6 +30,7 @@ const HomeDetailsScreen = ({navigation}) => {
     
   ];
 
+  
   const renderItem = ({ item }) => {
     switch (item.key) {
       case 'header':
@@ -95,7 +97,7 @@ const HomeDetailsScreen = ({navigation}) => {
           </View>
         );
       case 'popular':
-        return <PopularDepartmentAndMedicine />;
+        return <PopularDepartmentAndMedicine  navigation={navigation}/>;
         case 'doctor':
           return <  SpecialistScreen navigation={navigation}/>;
 
