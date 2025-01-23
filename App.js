@@ -16,7 +16,8 @@ import PaymentMethodScreen from './screens/appointment-payment-details/PaymentMe
 import AppointmentScreen from './screens/appointment-payment-details/AppointmentScreen';
 
 import DrugDetailScreen from './screens/medicine-pill-reminder/DrugDetailScreen';
-
+import CartScreen from './screens/medicine-pill-reminder/CartScreen';
+import AddPillScreen from './screens/medicine-pill-reminder/AddPillScreen';
 
 
 const Stack = createStackNavigator();
@@ -187,7 +188,11 @@ export default function App() {
         <Stack.Screen name="DrugDetailScreen" component={DrugDetailScreen}        
           //  options={{ headerShown: false }}
             />
-
+    <Stack.Screen name="CartScreen" component={CartScreen}        
+            />
+                    <Stack.Screen name="AddPillScreen" component={AddPillScreen}        
+          //  options={{ headerShown: false }}
+            />
       </Stack.Navigator>
     </NavigationContainer>
   );

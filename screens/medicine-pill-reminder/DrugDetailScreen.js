@@ -92,7 +92,7 @@ const DrugDetailScreen = ({ navigation }) => {
         <Text style={styles.buyButtonText}>Buy Now</Text>
       </TouchableOpacity>  */}
        <View style={styles.touchableOpacityContainer}>
-      <TouchableOpacity style={styles.button} onPress={() => alert('Button pressed')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CartScreen')}>
         <Text style={styles.buttonText}>Buy Now</Text>
         <Icon name="arrow-right" size={20} color="#fff" style={styles.icon} />
       </TouchableOpacity>
